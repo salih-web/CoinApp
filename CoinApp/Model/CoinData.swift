@@ -7,6 +7,6 @@
 
 import UIKit
 
-struct CoinData{
+struct CoinData: Codable{
     let rate: Double
 }
