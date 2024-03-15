@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var currencyPicker: UIPickerView!
     @IBOutlet weak var currencyLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var coinLabel: UILabel!
     
     var coinManager = CoinManager()
     
@@ -38,19 +39,19 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == coinPicker {
-            return coinManager.coinArray.count
-        } else {
             return coinManager.currencyArray.count
+        } else {
+            return coinManager.coinArray.count
         }
     }
     
 // When we use one of the pickers, the other selection also changes.
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == coinPicker {
-            return coinManager.coinArray[row]
+            return coinManager.currencyArray[row]
             
         } else {
-            return coinManager.currencyArray[row]
+            return coinManager.coinArray[row]
         }
     }
     
@@ -68,6 +69,7 @@ extension ViewController: CoinManagerDelegate{
             self.currencyLabel.text = currency
             self.priceLabel.text = price
             self.currencyLabel.text = currency
+            self.coinLabel.text = coin
         }
     }
     
