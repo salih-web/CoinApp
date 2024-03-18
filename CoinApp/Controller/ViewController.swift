@@ -29,14 +29,15 @@ class ViewController: UIViewController {
     }
 }
 //MARK: - PickerView Delegate and DataSource
-
+/* pickerView'ların yeri karıştığı için yeniden telefonun interface ile uğraşmak yerine
+ if-else döngülerinde her pickerView diğer array ile eşleştirdim.
+ labellar'da değiştirildi döngü sırasında.
+*/
 extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
    
-    
-    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == coinPicker {
             return coinManager.currencyArray.count
@@ -45,7 +46,7 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
         }
     }
     
-// When we use one of the pickers, the other selection also changes.
+
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == coinPicker {
             return coinManager.currencyArray[row]
@@ -56,9 +57,16 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedCurrency = coinManager.currencyArray[row]
-        let selectedCoin = coinManager.coinArray[row]
-        return coinManager.getCoinPrice(for: selectedCurrency, coin: selectedCoin)
+        if pickerView == coinPicker{
+            let selectedCoin = coinManager.currencyArray[row]
+            currencyLabel.text = selectedCoin
+        }else if pickerView == currencyPicker{
+            let selectedCurrency = coinManager.coinArray[row]
+            coinLabel.text = selectedCurrency
+        }
+        if let selectedCoin = coinLabel.text , let selectedCurrency = currencyLabel.text{
+            coinManager.getCoinPrice(currency: selectedCurrency, coin: selectedCoin)
+        }
     }
 }
 //MARK: -CoinManagerDelegate
@@ -66,10 +74,9 @@ extension ViewController: UIPickerViewDelegate,UIPickerViewDataSource{
 extension ViewController: CoinManagerDelegate{
     func didUpdatePrice(price: String, currency: String, coin: String) {
         DispatchQueue.main.async {
-            self.currencyLabel.text = currency
+            
             self.priceLabel.text = price
-            self.currencyLabel.text = currency
-            self.coinLabel.text = coin
+            
         }
     }
     

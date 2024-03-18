@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CoinApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awE-gO-ssi">
-                                <rect key="frame" x="94.333333333333314" y="50" width="186.66666666666669" height="60"/>
+                                <rect key="frame" x="94.333333333333329" y="50" width="186.66666666666669" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="nG2-Jc-a77"/>
                                 </constraints>
