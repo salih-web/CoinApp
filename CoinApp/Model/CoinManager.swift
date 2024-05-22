@@ -23,7 +23,7 @@ struct CoinManager{
     //A4AFE11C-626E-4C41-B278-3DDBE82BAB91
     
     let baseURL = "https://rest.coinapi.io/v1/exchangerate"
-    let apiKey = "7D327B14-5CB9-4D9F-9DD8-2DEDA83774FD"
+    let apiKey = "3937087D-9654-4C12-B376-5546401893DF"
     
    
     let currencyArray = ["USD", "TRY","EUR"]
