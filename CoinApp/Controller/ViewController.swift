@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Charts
 
 class ViewController: UIViewController {
   
@@ -16,16 +17,32 @@ class ViewController: UIViewController {
     @IBOutlet weak var coinLabel: UILabel!
     
     var coinManager = CoinManager()
+    var lineChart = LineChartView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
- 
+        
+        lineChart.delegate = self
         coinManager.delegate = self
         coinPicker.delegate = self
         coinPicker.dataSource = self
         currencyPicker.delegate = self
         currencyPicker.dataSource = self
-
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        lineChart.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.width)
+        lineChart.center = view.center
+        view.addSubview(lineChart)
+        
+        var entries = [ChartDataEntry]()
+        for x in 0...15{
+            entries.append(ChartDataEntry(x: Double(x), y: Double(x)))
+        }
+        let set = LineChartDataSet(entries: entries)
+        let data = LineChartData(dataSet: set)
+        lineChart.data = data
+        
     }
 }
 //MARK: - PickerView Delegate and DataSource
@@ -84,3 +101,11 @@ extension ViewController: CoinManagerDelegate{
         print(error)
     }
 }
+
+//MARK: -ChartViewDelegate
+
+extension ViewController:ChartViewDelegate{
+    
+    
+}
+

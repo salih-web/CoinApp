@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Charts
+
 
 
 protocol CoinManagerDelegate{
